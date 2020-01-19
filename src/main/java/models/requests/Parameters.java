@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class Parameters {
     private String films;
     private String number;
+    @SerializedName("number-integer")
+    private int hoeveelheid;
     @SerializedName("films.original")
     private String filmsOriginal;
     @SerializedName("number.original")
@@ -17,9 +19,10 @@ public class Parameters {
     public Parameters() {
     }
 
-    public Parameters(String films, String number, String filmsOriginal, String numberOriginal, double noInput, double noMatch) {
+    public Parameters(String films, String number, int hoeveelheid, String filmsOriginal, String numberOriginal, double noInput, double noMatch) {
         this.films = films;
         this.number = number;
+        this.hoeveelheid = hoeveelheid;
         this.filmsOriginal = filmsOriginal;
         this.numberOriginal = numberOriginal;
         this.noInput = noInput;
@@ -72,5 +75,13 @@ public class Parameters {
 
     public void setNoMatch(double noMatch) {
         this.noMatch = noMatch;
+    }
+
+    public int getHoeveelheid() {
+        return hoeveelheid;
+    }
+
+    public void setHoeveelheid(int hoeveelheid) {
+        this.hoeveelheid = hoeveelheid;
     }
 }

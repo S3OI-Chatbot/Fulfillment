@@ -33,11 +33,16 @@ public class RestService {
         }
 
 
+
+
         switch (r.getQueryResult().getIntent().getDisplayName()) {
             case "age limit replier" :
                 return gson.toJson(new Response("De leeftijdscategorie voor " + film.getName() + " is " + film.getAgeLimit() + "+"));
             case "Cost replier":
-                return gson.toJson(new Response("De kosten voor " + film.getName() + " zijn " + new DecimalFormat("€##.##").format(film.getPrice()) + " euro"));
+                int hoeveelheid = r.getQueryResult().getParameters().getHoeveelheid();
+                return gson.toJson(new Response(
+                        "De kosten voor " + film.getName() + " per kaartje zijn " + new DecimalFormat("€##.##").format(film.getPrice()) + " euro, " +
+                                "voor " + hoeveelheid + " kaartjes kost het " + new DecimalFormat("€##.##").format(film.getPrice()*hoeveelheid)));
             case "Duration replier":
                 return gson.toJson(new Response(film.getName() + " duurt " + film.getDuration().getHours() + " uur en " + film.getDuration().getMinutes() + " minuten"));
         }
